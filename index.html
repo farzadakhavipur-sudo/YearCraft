@@ -4816,5 +4816,60 @@
             moveHomeSecondaryToBottom();
         };
     </script>
+
+<style>
+.demo-video-card{
+position:fixed;right:22px;bottom:22px;width:min(380px,calc(100vw - 24px));
+background:rgba(8,15,30,.94);border:1px solid rgba(255,255,255,.08);
+border-radius:20px;padding:16px;z-index:9999;
+box-shadow:0 12px 40px rgba(0,0,0,.35);
+animation:demoUp .7s ease forwards;
+backdrop-filter:blur(12px)
+}
+.demo-video-card.hidden{display:none}
+.demo-video-close{position:absolute;left:10px;top:10px;border:0;background:rgba(255,255,255,.1);color:white;border-radius:50%;width:30px;height:30px;cursor:pointer}.demo-video-reopen{position:fixed;right:22px;bottom:22px;z-index:9998;border:0;background:linear-gradient(135deg,#8b5cf6,#22c55e);color:white;border-radius:999px;padding:10px 16px;font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.demo-video-title{color:white;font-weight:900;font-size:17px;line-height:1.6;margin:0 0 8px}
+.demo-video-text{color:#cbd5e1;font-size:13px;margin-bottom:12px}
+.demo-video-player{width:100%;border-radius:14px;background:#000}
+.demo-video-badge{display:inline-block;background:linear-gradient(135deg,#8b5cf6,#22c55e);color:white;padding:5px 10px;border-radius:999px;font-size:11px;margin-bottom:10px}
+@keyframes demoUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.demo-video-card{right:12px;left:12px;bottom:12px;width:auto}}
+</style>
+
+<div id="demo-video-card" class="demo-video-card hidden">
+<button class="demo-video-close" onclick="closeDemoVideo()">×</button>
+<div class="demo-video-badge">🎬 Demo</div>
+<h3 class="demo-video-title">قبل از شروع، دموی کوتاه YearCraft را ببین</h3>
+<p class="demo-video-text">در کمتر از یک دقیقه با امکانات YearCraft آشنا شو.</p>
+<video id="demo-video-player" class="demo-video-player" controls playsinline preload="metadata">
+<source src="assets/yearcraft-demo.mp4" type="video/mp4">
+</video>
+</div>
+<button id="demo-video-reopen" class="demo-video-reopen" onclick="openDemoVideo()" style="display:none">🎬 مشاهده دموی YearCraft</button>
+<script>
+function closeDemoVideo(){
+const e=document.getElementById('demo-video-card');
+const v=document.getElementById('demo-video-player');
+if(v){v.pause(); v.currentTime=0;}
+if(e)e.style.display='none';
+const r=document.getElementById('demo-video-reopen');
+if(r)r.style.display='block';
+localStorage.setItem('yc_demo_closed','1');
+}
+function openDemoVideo(){
+const e=document.getElementById('demo-video-card');
+if(e){e.style.display='block';e.classList.remove('hidden');}
+const r=document.getElementById('demo-video-reopen');
+if(r)r.style.display='none';
+}
+window.addEventListener('load',()=>{
+const e=document.getElementById('demo-video-card');
+const r=document.getElementById('demo-video-reopen');
+if(e && !localStorage.getItem('yc_demo_closed')){
+setTimeout(()=>e.classList.remove('hidden'),1200);
+}else if(r){r.style.display='block';}
+});
+</script>
+
 </body>
 </html>
