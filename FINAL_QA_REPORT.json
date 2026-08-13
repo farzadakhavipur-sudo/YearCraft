@@ -1,0 +1,15 @@
+{
+  "version": "7.0",
+  "javascript_syntax": "PASS",
+  "duplicate_static_ids": 0,
+  "duplicate_named_functions": 0,
+  "legacy_year_print_removed": "PASS",
+  "legacy_backup_restore_code_removed": "PASS",
+  "focus_master_volume": "PASS",
+  "focus_preset_persistence": "PASS",
+  "focus_fade_in_out": "PASS",
+  "single_hang_interval_guard": "PASS",
+  "english_runtime_translation_extended": "PASS",
+  "smoke_tests": "YearCraft v7.0 smoke tests: PASS",
+  "static_persian_nodes_default_ui": 227
+}
